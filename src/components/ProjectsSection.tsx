@@ -107,7 +107,7 @@ export function ProjectsSection() {
                   <h3 className="font-display text-2xl md:text-3xl text-on-surface font-bold mb-6">{project.name}</h3>
                   <p className="font-mono text-xs text-on-surface-muted font-medium mb-4 uppercase">{project.subtitle}</p>
                   
-                  <div className={`w-full bg-surface-container-low border border-outline-variant/20 p-6 z-20 mb-6 drop-shadow-2xl text-left ${index % 2 !== 0 ? '' : ''}`}>
+                  <div className={`w-full liquid-glass-soft rounded-lg p-6 z-20 mb-6 text-left ${index % 2 !== 0 ? '' : ''}`}>
                     <p className="text-on-surface-variant font-body mb-4">{project.desc}</p>
                     <div className="mb-2">
                        <strong className="text-on-surface text-sm font-display">Key Features:</strong>

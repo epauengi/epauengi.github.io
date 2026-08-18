@@ -1,6 +1,7 @@
 import { motion } from 'motion/react';
 import { useLanguage } from '../lib/LanguageContext';
 import { Award, GraduationCap, CheckCircle2 } from 'lucide-react';
+import { SpotlightCard } from './SpotlightCard';
 
 export function CertificatesSection() {
   const { t } = useLanguage();
@@ -29,9 +30,9 @@ export function CertificatesSection() {
           {t.certificates?.items && t.certificates.items.length > 0 ? (
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {t.certificates.items.map((item: any, idx: number) => (
-                <div 
-                  key={idx} 
-                  className="group relative p-6 border border-outline-variant/30 bg-surface-container-low/80 backdrop-blur-sm transition-all duration-300 hover:border-primary-container hover:shadow-lg hover:shadow-primary-container/5 rounded-lg flex flex-col justify-between"
+                <SpotlightCard
+                  key={idx}
+                  className="group liquid-glass-soft rounded-lg p-6 transition-all duration-300 hover:shadow-lg hover:shadow-primary-container/5 flex flex-col justify-between"
                 >
                   <div className="flex items-start gap-4">
                     <div className="p-3 bg-primary-container/10 text-primary-container rounded-lg group-hover:bg-primary-container group-hover:text-on-primary-fixed transition-colors duration-300 shrink-0">
@@ -50,7 +51,7 @@ export function CertificatesSection() {
                       </p>
                     </div>
                   </div>
-                </div>
+                </SpotlightCard>
               ))}
             </div>
           ) : (

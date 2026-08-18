@@ -41,7 +41,7 @@ export function Header() {
   return (
     <header className={`fixed top-0 left-0 right-0 w-full flex justify-between items-center px-6 md:px-10 z-50 transition-all duration-300 ${
       isScrolled 
-        ? 'py-4 bg-background/85 backdrop-blur-md shadow-lg shadow-primary-container/5 border-b border-primary-container/50' 
+        ? 'py-4 liquid-glass'
         : 'py-6 bg-transparent border-b border-transparent'
     }`}>
       {/* Animated Colored Accent Gradient Border on Scroll */}

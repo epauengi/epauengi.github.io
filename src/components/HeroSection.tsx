@@ -1,9 +1,56 @@
+import { useEffect, useRef, useState } from "react";
 import { motion } from "motion/react";
 import { useLanguage } from "../lib/LanguageContext";
 import { ThreeBackground } from "./ThreeBackground";
+import { Magnetic } from "./Magnetic";
+
+const CHARSET = "ABCDEF0123456789#$%&";
+
+// Decode effect: runs once per mount; language switches after decode swap text instantly
+function useScramble(text: string) {
+  const [display, setDisplay] = useState(text);
+  const revealed = useRef(false);
+
+  useEffect(() => {
+    if (revealed.current) {
+      setDisplay(text);
+      return;
+    }
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      revealed.current = true;
+      return;
+    }
+    let frame = 0;
+    const total = 28; // ~0.9s at 33ms
+    const id = setInterval(() => {
+      frame++;
+      const revealCount = Math.floor((frame / total) * text.length);
+      setDisplay(
+        text
+          .split("")
+          .map((ch, i) =>
+            ch === " " || i < revealCount
+              ? ch
+              : CHARSET[Math.floor(Math.random() * CHARSET.length)]
+          )
+          .join("")
+      );
+      if (frame >= total) {
+        revealed.current = true;
+        setDisplay(text);
+        clearInterval(id);
+      }
+    }, 33);
+    return () => clearInterval(id);
+  }, [text]);
+
+  return display;
+}
 
 export function HeroSection() {
   const { t } = useLanguage();
+  const name = useScramble(t.hero.name);
+  const title = useScramble(t.hero.title);
 
   return (
     <section
@@ -26,9 +73,9 @@ export function HeroSection() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
         >
-          {t.hero.name} <br />
+          {name} <br />
           <span className="text-primary-container text-3xl sm:text-4xl md:text-[52px]">
-            {t.hero.title}
+            {title}
           </span>
         </motion.h1>
 
@@ -38,18 +85,22 @@ export function HeroSection() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.6, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
         >
-          <a
-            href="#projects"
-            className="bg-primary-container text-on-primary-fixed border border-primary-container px-8 py-4 font-mono text-xs tracking-[0.15em] font-medium hover:bg-transparent hover:text-primary-container transition-all duration-300 text-center inline-block"
-          >
-            {t.hero.projectsBtn}
-          </a>
-          <a
-            href="#contact"
-            className="border border-outline-variant px-8 py-4 font-mono text-xs tracking-[0.15em] font-medium hover:border-primary-container hover:text-primary-container transition-all duration-300 text-center inline-block"
-          >
-            {t.contact.resumeBtn}
-          </a>
+          <Magnetic strength={0.3}>
+            <a
+              href="#projects"
+              className="bg-primary-container text-on-primary-fixed border border-primary-container px-8 py-4 font-mono text-xs tracking-[0.15em] font-medium hover:bg-transparent hover:text-primary-container transition-all duration-300 text-center inline-block"
+            >
+              {t.hero.projectsBtn}
+            </a>
+          </Magnetic>
+          <Magnetic strength={0.3}>
+            <a
+              href="#contact"
+              className="bg-surface/30 backdrop-blur-md border border-outline-variant px-8 py-4 font-mono text-xs tracking-[0.15em] font-medium hover:border-primary-container hover:text-primary-container transition-all duration-300 text-center inline-block"
+            >
+              {t.contact.resumeBtn}
+            </a>
+          </Magnetic>
         </motion.div>
 
         {/* Location & Status Footer (Flow-based to prevent any overlapping) */}
@@ -74,7 +125,7 @@ export function HeroSection() {
             transition={{ delay: 1.0, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           >
             <div className="flex gap-4">
-              <span className="px-3 py-1 border border-outline-variant/30 rounded-full text-[10px] font-mono tracking-[0.15em] text-on-surface-variant uppercase font-medium">
+              <span className="px-3 py-1 bg-surface/40 backdrop-blur-md border border-outline-variant/30 rounded-full text-[10px] font-mono tracking-[0.15em] text-on-surface-variant uppercase font-medium">
                 AVAILABLE FOR HIRE
               </span>
             </div>

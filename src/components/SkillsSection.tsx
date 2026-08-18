@@ -28,7 +28,7 @@ export function SkillsSection() {
                   <h3 className="font-mono text-xs tracking-[0.2em] text-primary-container uppercase mb-4">{category.name}</h3>
                   <div className="flex flex-wrap gap-2">
                     {category.skills.split(', ').map((skill, i) => (
-                      <span key={i} className="px-3 py-1.5 bg-surface-container-low border border-outline-variant/30 text-on-surface-variant font-body text-sm hover:border-primary-container hover:text-primary-container transition-colors cursor-default">
+                      <span key={i} className="px-3 py-1.5 bg-surface-container-low/60 backdrop-blur-md border border-outline-variant/30 text-on-surface-variant font-body text-sm hover:border-primary-container hover:text-primary-container transition-colors cursor-default">
                         {skill}
                       </span>
                     ))}
@@ -43,7 +43,7 @@ export function SkillsSection() {
                   <h3 className="font-mono text-xs tracking-[0.2em] text-primary-container uppercase mb-4">{category.name}</h3>
                   <div className="flex flex-wrap gap-2">
                     {category.skills.split(', ').map((skill, i) => (
-                      <span key={i} className="px-3 py-1.5 bg-surface-container-low border border-outline-variant/30 text-on-surface-variant font-body text-sm hover:border-primary-container hover:text-primary-container transition-colors cursor-default">
+                      <span key={i} className="px-3 py-1.5 bg-surface-container-low/60 backdrop-blur-md border border-outline-variant/30 text-on-surface-variant font-body text-sm hover:border-primary-container hover:text-primary-container transition-colors cursor-default">
                         {skill}
                       </span>
                     ))}

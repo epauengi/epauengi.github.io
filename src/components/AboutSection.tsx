@@ -31,7 +31,7 @@ export function AboutSection() {
                 <h3 className="font-mono text-sm tracking-[0.2em] text-primary-container uppercase mb-6">{t.about.statsHeading}</h3>
                 <div className="flex flex-wrap gap-4">
                   {t.about.stats.map((stat, i) => (
-                    <div key={i} className="px-5 py-3 border border-outline-variant/40 rounded-full font-mono text-xs tracking-wider text-on-surface">
+                    <div key={i} className="px-5 py-3 bg-surface/40 backdrop-blur-md border border-outline-variant/40 rounded-full font-mono text-xs tracking-wider text-on-surface">
                       {stat}
                     </div>
                   ))}
