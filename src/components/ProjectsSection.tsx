@@ -128,19 +128,21 @@ export function ProjectsSection() {
                   </ul>
 
                   <div className={`flex gap-6 items-center ${index % 2 !== 0 ? 'justify-start' : 'justify-end'}`}>
-                    <a
-                      href={project.github}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      onClick={(e) => {
-                        e.preventDefault();
-                        window.open(project.github, "_blank", "noopener,noreferrer");
-                      }}
-                      className="text-on-surface-variant hover:text-primary-container transition-colors"
-                      aria-label="GitHub Link"
-                    >
-                      <Github size={22} />
-                    </a>
+                    {project.github && (
+                      <a
+                        href={project.github}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          window.open(project.github, "_blank", "noopener,noreferrer");
+                        }}
+                        className="text-on-surface-variant hover:text-primary-container transition-colors"
+                        aria-label="GitHub Link"
+                      >
+                        <Github size={22} />
+                      </a>
+                    )}
                     <a
                       href={project.demo}
                       target="_blank"

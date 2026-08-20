@@ -30,7 +30,7 @@ export const content = {
       categories: [
         { name: "FrontEnd", skills: "HTML, CSS, JavaScript, TypeScript, React, Next.js, Tailwind CSS" },
         { name: "BackEnd", skills: "Java, Spring Boot, Node.js, Express" },
-        { name: "Database", skills: "PostgreSQL, SQL Server, SQL" },
+        { name: "Database", skills: "PostgreSQL, SQL Server, SQL, MongoDB" },
         { name: "Dev Tools", skills: "Git, GitHub, Vite" },
         { name: "AI & Automation", skills: "Gemini, ChatGPT, Claude, Prompt Engineering, AI Agents" }
       ],
@@ -75,6 +75,22 @@ export const content = {
           github: "https://github.com/epauengi/YomuJi",
           demo: "https://yomuji.vercel.app",
           image: "projects/yomuji.png"
+        },
+        {
+          name: "Giáo Xứ Hội An",
+          subtitle: "Official parish information portal for Hội An",
+          desc: "The official information portal for Giáo xứ Hội An, Diocese of Da Nang, built to connect parishioners, visitors, and the local community with essential pastoral information such as Mass times, Sacraments, the Word of God, news, schedules, catechism, a library, donations, and emergency contact. The project uses App Router with Server Components for performance, and offers a responsive, newspaper-inspired interface with content administration, admin authentication, SEO, a sitemap, and full desktop/mobile support.",
+          features: [
+            "Mass times, Sacraments, the Word of God, news, schedules, catechism, library, donations, and emergency contact",
+            "Content administration with secure admin authentication",
+            "Next.js App Router and Server Components for fast page delivery",
+            "Responsive editorial interface with SEO, sitemap, and desktop/mobile support"
+          ],
+          role: "Full-stack web development",
+          stack: ["Next.js", "React", "TypeScript", "Tailwind CSS", "MongoDB", "NextAuth", "MDX"],
+          github: "https://github.com/epauengi/giaoxuhoian",
+          demo: "https://giaoxuhoian.vercel.app",
+          image: "projects/giaoxuhoian_banner.png"
         }
       ]
     },
@@ -113,7 +129,7 @@ export const content = {
       categories: [
         { name: "フロントエンド", skills: "HTML, CSS, JavaScript, TypeScript, React, Next.js, Tailwind CSS" },
         { name: "バックエンド", skills: "Java, Spring Boot, Node.js, Express" },
-        { name: "データベース", skills: "PostgreSQL, SQL Server, SQL" },
+        { name: "データベース", skills: "PostgreSQL, SQL Server, SQL, MongoDB" },
         { name: "開発ツール", skills: "Git, GitHub, Vite" },
         { name: "AI & Automation", skills: "Gemini, ChatGPT, Claude, Prompt Engineering, AIエージェント" }
       ],
@@ -158,6 +174,22 @@ export const content = {
           github: "https://github.com/epauengi/YomuJi",
           demo: "https://yomuji.vercel.app",
           image: "projects/yomuji.png"
+        },
+        {
+          name: "Giáo Xứ Hội An",
+          subtitle: "ホイアン教区の公式情報ポータル",
+          desc: "ダナン教区に属するホイアン教区の公式情報ポータルです。教区の信者、訪問者、地域の人々をつなぎ、ミサの時間、秘跡、神の言葉、ニュース、活動予定、カテキズム、図書館、献金、緊急連絡先など、必要な牧会情報を提供します。App RouterとServer Componentsを活用して表示性能を高め、新聞を参考にしたレスポンシブな編集デザインで、コンテンツ管理、管理者認証、SEO、サイトマップに対応し、パソコンとスマートフォンの両方で快適に利用できます。",
+          features: [
+            "ミサの時間、秘跡、神の言葉、ニュース、活動予定、カテキズム、図書館、献金、緊急連絡先を掲載",
+            "コンテンツ管理と管理者認証に対応",
+            "App RouterとServer Componentsによる高速なページ表示",
+            "新聞を参考にしたレスポンシブな編集デザイン、SEOとサイトマップに対応"
+          ],
+          role: "フルスタックWeb開発",
+          stack: ["Next.js", "React", "TypeScript", "Tailwind CSS", "MongoDB", "NextAuth", "MDX"],
+          github: "https://github.com/epauengi/giaoxuhoian",
+          demo: "https://giaoxuhoian.vercel.app",
+          image: "projects/giaoxuhoian_banner.png"
         }
       ]
     },
