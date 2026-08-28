@@ -4842,6 +4842,14 @@ main.touch .case-intro-image .btn-wrap {
    --orb-size: clamp(34rem, min(56vw, 86vh), 58rem);
    --orbit-flatten: .56;
    --orbit-inverse-scale: 1.785714;
+   --orbit-stretch: 1.302326;
+   --orbit-inverse-stretch: .767857;
+   --orbit-angle: -24deg;
+   --orbit-inverse-angle: 24deg;
+   --orbit-rotation: 0turn;
+   --orbit-counter-rotation: 0turn;
+   --orbit-icon-rotation: 24deg;
+   --orbit-icon-counter-rotation: 0turn;
    position: absolute;
    top: 41%;
    left: 52%;
@@ -4976,7 +4984,12 @@ main.touch .case-intro-image .btn-wrap {
 .home-header .personal-image .portfolio-systems-orb__track {
    inset: 7% -6%;
    border-radius: 50%;
-   transform: rotate(-24deg) scaleY(var(--orbit-flatten));
+   transform: rotate(var(--orbit-angle)) scaleY(var(--orbit-flatten));
+}
+
+.home-header .personal-image .portfolio-systems-orb__track-rotor {
+   inset: 0;
+   transform: scaleX(var(--orbit-stretch));
 }
 
 .home-header .personal-image .portfolio-systems-orb__orbit--a {
@@ -4997,7 +5010,8 @@ main.touch .case-intro-image .btn-wrap {
 }
 
 .home-header .personal-image .portfolio-systems-orb__track--b .portfolio-systems-orb__track-rotor {
-   transform: rotate(.25turn);
+   --orbit-rotation: .25turn;
+   --orbit-icon-counter-rotation: -.25turn;
 }
 
 .home-header .personal-image .portfolio-systems-orb__icon-anchor {
@@ -5008,12 +5022,12 @@ main.touch .case-intro-image .btn-wrap {
 
 .home-header .personal-image .portfolio-systems-orb__icon-anchor--top {
    top: 0;
-   transform: translate(-50%, -50%);
+   transform: translate(-50%, -50%) scaleX(var(--orbit-inverse-stretch));
 }
 
 .home-header .personal-image .portfolio-systems-orb__icon-anchor--bottom {
    bottom: 0;
-   transform: translate(-50%, 50%);
+   transform: translate(-50%, 50%) scaleX(var(--orbit-inverse-stretch));
 }
 
 .home-header .personal-image .portfolio-systems-orb__icon {
@@ -5024,11 +5038,11 @@ main.touch .case-intro-image .btn-wrap {
    border-radius: 50%;
    background: rgb(28 29 32 / .92);
    color: var(--color-white);
-   transform: scaleY(var(--orbit-inverse-scale)) rotate(24deg);
+   transform: scaleY(var(--orbit-inverse-scale)) rotate(var(--orbit-inverse-angle));
 }
 
 .home-header .personal-image .portfolio-systems-orb__track--b .portfolio-systems-orb__icon {
-   transform: rotate(-.25turn) scaleY(var(--orbit-inverse-scale)) rotate(24deg);
+   transform: rotate(-.25turn) scaleY(var(--orbit-inverse-scale)) rotate(var(--orbit-inverse-angle));
 }
 
 .home-header .personal-image .portfolio-systems-orb__icon--code {
@@ -5052,13 +5066,13 @@ main.touch .case-intro-image .btn-wrap {
 }
 
 @keyframes portfolio-systems-orb-orbit-spin {
-   from { transform: rotate(0turn); }
-   to { transform: rotate(1turn); }
+   from { transform: scaleX(var(--orbit-stretch)) rotate(var(--orbit-rotation)); }
+   to { transform: scaleX(var(--orbit-stretch)) rotate(calc(var(--orbit-rotation) + 1turn)); }
 }
 
 @keyframes portfolio-systems-orb-icon-counter-spin {
-   from { transform: rotate(0turn) scaleY(var(--orbit-inverse-scale)) rotate(24deg); }
-   to { transform: rotate(-1turn) scaleY(var(--orbit-inverse-scale)) rotate(24deg); }
+   from { transform: rotate(var(--orbit-icon-counter-rotation)) scaleY(var(--orbit-inverse-scale)) rotate(var(--orbit-icon-rotation)); }
+   to { transform: rotate(calc(var(--orbit-icon-counter-rotation) - 1turn)) scaleY(var(--orbit-inverse-scale)) rotate(var(--orbit-icon-rotation)); }
 }
 
 @media (prefers-reduced-motion: no-preference) {
