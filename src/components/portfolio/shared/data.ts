@@ -202,7 +202,6 @@ export const CONTENT: Record<Language, PortfolioContent> = {
       { name: "Learning", items: "Spring Boot, Docker, AWS" },
     ],
     certificates: [
-      { title: "JLPT N3", issuer: "Japan Educational Exchanges and Services (JEES)", date: "Official Certificate", description: "Japanese Language Proficiency Test (N3 Certification)." },
       { title: "Gemini Certified Student", issuer: "Google AI", date: "Official Certification", description: "Certification in Google Gemini AI technology application & prompt engineering." },
     ],
   },
@@ -276,7 +275,6 @@ export const CONTENT: Record<Language, PortfolioContent> = {
     ],
     proficiency: [{ name: "得意", items: "HTML, CSS, JavaScript, SQL, React" }, { name: "学習中", items: "Spring Boot, Docker, AWS" }],
     certificates: [
-      { title: "日本語能力試験 JLPT N3", issuer: "日本国際教育支援協会 (JEES)", date: "認定書", description: "日本語能力試験（JLPT）N3レベル合格。" },
       { title: "Gemini Certified Student", issuer: "Google AI", date: "公式認定", description: "Google Gemini AI技術の活用およびプロンプトエンジニアリングに関する認定。" },
     ],
   },
@@ -286,11 +284,11 @@ export type { PortfolioContent };
 
 export const GREETINGS = [
   { text: "Hello", extra: "home-active home-active-first" },
-  { text: "こんにちは", extra: "home-active" },
   { text: "Xin chào", extra: "home-active" },
   { text: "Ciao", extra: "home-active" },
   { text: "Olá", extra: "home-active" },
-  { text: "Hallo", extra: "home-active-last" },
+  { text: "안녕하세요", extra: "home-active" },
+  { text: "こんにちは", extra: "home-active-last" },
 ] as const;
 
 export const HORIZONTAL = [
