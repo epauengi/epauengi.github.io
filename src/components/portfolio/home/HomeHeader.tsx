@@ -1,9 +1,9 @@
 "use client";
 
-import { Blocks, Bot, CodeXml, GitBranch } from "lucide-react";
 import { ArrowUpRight, Globe, HangerShape } from "../shared/icons";
 import { usePortfolioLanguage } from "../shared/PortfolioLanguage";
 import { NavBar } from "../shared/NavBar";
+import { PortfolioOrb } from "./PortfolioOrb";
 
 export function HomeHeader() {
   const { content } = usePortfolioLanguage();
@@ -11,32 +11,7 @@ export function HomeHeader() {
   return (
     <header className="section home-header theme-dark" data-scroll-section>
       <div className="overlay personal-image no-select once-in" data-scroll data-scroll-speed="-3" data-scroll-position="top">
-        <div className="portfolio-systems-orb" aria-hidden="true">
-          <div className="portfolio-systems-orb__core">
-            <span className="portfolio-systems-orb__mesh">
-              <span className="portfolio-systems-orb__latitude portfolio-systems-orb__latitude--north" />
-              <span className="portfolio-systems-orb__latitude portfolio-systems-orb__latitude--middle" />
-              <span className="portfolio-systems-orb__latitude portfolio-systems-orb__latitude--south" />
-              <span className="portfolio-systems-orb__meridian portfolio-systems-orb__meridian--west" />
-              <span className="portfolio-systems-orb__meridian portfolio-systems-orb__meridian--center" />
-              <span className="portfolio-systems-orb__meridian portfolio-systems-orb__meridian--east" />
-            </span>
-          </div>
-          <span className="portfolio-systems-orb__orbit portfolio-systems-orb__orbit--a" />
-          <span className="portfolio-systems-orb__orbit portfolio-systems-orb__orbit--b" />
-          <span className="portfolio-systems-orb__track portfolio-systems-orb__track--a">
-            <span className="portfolio-systems-orb__track-rotor">
-              <span className="portfolio-systems-orb__icon-anchor portfolio-systems-orb__icon-anchor--top"><span className="portfolio-systems-orb__icon portfolio-systems-orb__icon--code"><CodeXml /></span></span>
-              <span className="portfolio-systems-orb__icon-anchor portfolio-systems-orb__icon-anchor--bottom"><span className="portfolio-systems-orb__icon portfolio-systems-orb__icon--git"><GitBranch /></span></span>
-            </span>
-          </span>
-          <span className="portfolio-systems-orb__track portfolio-systems-orb__track--b">
-            <span className="portfolio-systems-orb__track-rotor">
-              <span className="portfolio-systems-orb__icon-anchor portfolio-systems-orb__icon-anchor--top"><span className="portfolio-systems-orb__icon portfolio-systems-orb__icon--framework"><Blocks /></span></span>
-              <span className="portfolio-systems-orb__icon-anchor portfolio-systems-orb__icon-anchor--bottom"><span className="portfolio-systems-orb__icon portfolio-systems-orb__icon--ai"><Bot /></span></span>
-            </span>
-          </span>
-        </div>
+        <PortfolioOrb />
       </div>
       <div className="overlay get-height once-in once-in-secondary">
         <div className="hanger">
