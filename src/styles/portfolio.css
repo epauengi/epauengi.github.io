@@ -3178,6 +3178,8 @@ main.touch .main-wrap {
 
 .work-filters .filter-row .toggle-row {
    display: flex;
+   flex-wrap: wrap;
+   row-gap: .5em;
 }
 
 .work-filters .filter-row .toggle-row .btn {

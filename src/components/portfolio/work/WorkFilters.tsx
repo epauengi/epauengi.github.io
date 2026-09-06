@@ -4,7 +4,7 @@ import type { ReactNode } from "react";
 import { usePortfolioLanguage } from "../shared/PortfolioLanguage";
 import { WORK_PROJECTS } from "./workData";
 
-export type WorkFilter = "all" | "development";
+export type WorkFilter = "all" | "development" | "extensions";
 export type WorkView = "rows" | "columns";
 
 type Props = {
@@ -41,15 +41,18 @@ function Control({ active, className, label, onClick, children }: {
 
 export function WorkFilters({ filter, view, onFilterChange, onViewChange }: Props) {
   const { content } = usePortfolioLanguage();
-  const count = WORK_PROJECTS.length;
+  const allCount = WORK_PROJECTS.length;
+  const devCount = WORK_PROJECTS.filter((project) => project.classes === "development").length;
+  const extCount = WORK_PROJECTS.filter((project) => project.classes === "extensions").length;
 
   return (
     <section className="section work-filters" data-scroll-section>
       <div className="container once-in">
         <div className="filter-row">
           <div className="toggle-row">
-            <Control active={filter === "all"} className="all-btn" label={content.work.all} onClick={() => onFilterChange("all")}>{content.work.all}<span className="count-nr">{count}</span></Control>
-            <Control active={filter === "development"} className="development-btn" label={content.work.development} onClick={() => onFilterChange("development")}>{content.work.development}<span className="count-nr">{count}</span></Control>
+            <Control active={filter === "all"} className="all-btn" label={content.work.all} onClick={() => onFilterChange("all")}>{content.work.all}<span className="count-nr">{allCount}</span></Control>
+            <Control active={filter === "development"} className="development-btn" label={content.work.development} onClick={() => onFilterChange("development")}>{content.work.development}<span className="count-nr">{devCount}</span></Control>
+            <Control active={filter === "extensions"} className="extensions-btn" label={content.work.extensions} onClick={() => onFilterChange("extensions")}>{content.work.extensions}<span className="count-nr">{extCount}</span></Control>
           </div>
           <div className="grid-row" aria-label="Project layout">
             <Control active={view === "rows"} className="btn-icon rows-btn" label="Rows" onClick={() => onViewChange("rows")}><RowsIcon /></Control>

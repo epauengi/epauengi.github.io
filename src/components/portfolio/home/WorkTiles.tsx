@@ -10,7 +10,7 @@ export function WorkTiles() {
     <section className="section work-tiles work-tiles-home" data-scroll-section>
       <div className="container"><ul>
         {WORK.map((project) => (
-          <li className="development visible" key={project.slug}>
+          <li className={`${project.category} visible`} key={project.slug}>
             <div className="single-tile-wrap">
               <a href={project.demo} target="_blank" rel="noreferrer" className="row">
                 <div className="flex-col"><div className="tile-image"><div className="overlay overlay-image" style={{ backgroundColor: project.color, backgroundImage: `url(${project.image})`, backgroundPosition: "center center", backgroundRepeat: "no-repeat", backgroundSize: "cover" }} /></div></div>

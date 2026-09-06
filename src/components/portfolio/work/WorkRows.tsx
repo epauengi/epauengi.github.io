@@ -25,14 +25,15 @@ export function WorkRows({ filter, view }: Props) {
         <ul className={`work-items mouse-pos-list-image-wrap ${filter}-active`}>
           {WORK_PROJECTS.map((project) => {
             const details = content.projects[project.slug];
+            const actionLabel = project.demo !== project.github ? content.work.demo : content.work.source;
             return (
               <li className={`${project.classes}${visible(project.classes) ? " visible" : ""}`} key={project.slug}>
                 <div className="stripe animate" />
-                <a href={project.demo} target="_blank" rel="noreferrer" className="row" aria-label={`${project.title}: ${content.work.demo}`}>
+                <a href={project.demo} target="_blank" rel="noreferrer" className="row" aria-label={`${project.title}: ${actionLabel}`}>
                   <div className="flex-col"><h4><span>{project.title}</span></h4></div>
                   <div className="flex-col animate"><p>{details.role}</p></div>
                   <div className="flex-col animate"><p>{details.stack.slice(0, 3).join(" · ")}</p></div>
-                  <div className="flex-col animate"><p>{content.work.demo}</p></div>
+                  <div className="flex-col animate"><p>{actionLabel}</p></div>
                 </a>
               </li>
             );

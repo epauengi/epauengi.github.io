@@ -15,7 +15,9 @@ export const SOCIALS = [
   { label: "Facebook", href: "https://facebook.com/phong626262" },
 ] as const;
 
-export type ProjectSlug = "yomuji" | "giaoxu-hoi-an";
+export type ProjectSlug = "fuucine" | "yomuji" | "giaoxu-hoi-an" | "fuumanga" | "docunchain";
+
+export type ProjectCategory = "development" | "extensions";
 
 export type PortfolioProject = {
   slug: ProjectSlug;
@@ -24,9 +26,19 @@ export type PortfolioProject = {
   color: string;
   demo: string;
   github: string;
+  category: ProjectCategory;
 };
 
 export const WORK: PortfolioProject[] = [
+  {
+    slug: "fuucine",
+    title: "FuuCine",
+    image: `${PROJECT_ASSET_ROOT}/fuucine-cover.png`,
+    color: "#0E131F",
+    demo: "https://fuucine.vercel.app",
+    github: "https://github.com/epauengi/fuucine",
+    category: "development",
+  },
   {
     slug: "yomuji",
     title: "YomuJi",
@@ -34,6 +46,7 @@ export const WORK: PortfolioProject[] = [
     color: "#F1F1F1",
     demo: "https://yomuji.vercel.app",
     github: "https://github.com/epauengi/YomuJi",
+    category: "development",
   },
   {
     slug: "giaoxu-hoi-an",
@@ -42,6 +55,25 @@ export const WORK: PortfolioProject[] = [
     color: "#E0D9D1",
     demo: "https://giaoxuhoian.vercel.app",
     github: "https://github.com/epauengi/giaoxuhoian",
+    category: "development",
+  },
+  {
+    slug: "fuumanga",
+    title: "FuuManga",
+    image: `${PROJECT_ASSET_ROOT}/fuumanga-cover.png`,
+    color: "#181824",
+    demo: "https://github.com/epauengi/FuuManga",
+    github: "https://github.com/epauengi/FuuManga",
+    category: "development",
+  },
+  {
+    slug: "docunchain",
+    title: "DocUnchain",
+    image: `${PROJECT_ASSET_ROOT}/docunchain-cover.png`,
+    color: "#0A111D",
+    demo: "https://github.com/epauengi/DocUnchain",
+    github: "https://github.com/epauengi/DocUnchain",
+    category: "extensions",
   },
 ];
 
@@ -59,7 +91,7 @@ type PortfolioContent = {
   language: { toggle: string; label: string };
   identity: { brand: string; name: string; role: string; location: string; availability: string; school: string; email: string };
   home: { recentWork: string; introLead: string; introText: string; aboutAction: string; moreWork: string; view: string };
-  work: { heading: string; all: string; development: string; demo: string; source: string; features: string; role: string; stack: string };
+  work: { heading: string; all: string; development: string; extensions: string; demo: string; source: string; features: string; role: string; stack: string };
   about: { heading: string; text: string; focus: string; focusItems: string[]; skillsHeading: string; proficiency: string };
   certificateSection: { heading: string; badge: string; label: string };
   contact: { heading: string; eyebrow: string; text: string; action: string; details: string; location: string };
@@ -84,7 +116,17 @@ export const CONTENT: Record<Language, PortfolioContent> = {
       moreWork: "View projects",
       view: "View demo",
     },
-    work: { heading: "Building practical digital products", all: "All projects", development: "Full-stack development", demo: "Live demo", source: "GitHub", features: "Key features", role: "My role", stack: "Stack" },
+    work: {
+      heading: "Building practical digital products",
+      all: "All projects",
+      development: "Full-stack development",
+      extensions: "Extensions",
+      demo: "Live demo",
+      source: "GitHub",
+      features: "Key features",
+      role: "My role",
+      stack: "Stack",
+    },
     about: {
       heading: "Learning to build useful systems",
       text: "I am an Information Technology student at the University of Information Technology, VNU-HCM. I am interested in full-stack web development and database systems. I enjoy building practical web applications that solve real problems, from frontend UI to backend APIs and database design.",
@@ -97,6 +139,18 @@ export const CONTENT: Record<Language, PortfolioContent> = {
     contact: { heading: "Let’s start a conversation", eyebrow: "What’s next?", text: "I’m currently looking for new opportunities. Whether you have a question or just want to say hi, I’ll try my best to get back to you!", action: "Say hello", details: "Contact details", location: "Ho Chi Minh City, VN" },
     footer: { heading: "Let’s work together", action: "Get in touch", version: "Portfolio", time: "Local time" },
     projects: {
+      fuucine: {
+        subtitle: "Cinematic film discovery and streaming platform",
+        description: "A theater-grade cinema discovery and streaming platform powered by external catalog feeds, dual-source IMDb rating resolution, procedural WebGL projector shaders, and accessible dialog orchestration.",
+        role: "Frontend & Creative Developer",
+        stack: ["React", "TypeScript", "Vite", "Tailwind CSS", "Framer Motion", "WebGL / GLSL", "SWR"],
+        features: [
+          "Custom native WebGL GLSL fragment shader simulating volumetric projector beams and floating dust particles",
+          "Dual-source asynchronous IMDb rating resolution engine with fuzzy matching and viewport-lazy loading",
+          "Seamless Framer Motion match-cut layout transitions (`layoutId`) between catalog cards and player dialogs",
+          "Multi-server streaming deck with automated translation format grouping and episode tracking",
+        ],
+      },
       yomuji: {
         subtitle: "Japanese–Vietnamese dictionary for learners",
         description: "A search-first Japanese dictionary built to help Vietnamese learners look up words, kanji, romaji, and Sino-Vietnamese readings in a single streamlined flow.",
@@ -110,6 +164,30 @@ export const CONTENT: Record<Language, PortfolioContent> = {
         role: "Full-stack web development",
         stack: ["Next.js", "React", "TypeScript", "Tailwind CSS", "MongoDB", "NextAuth", "MDX"],
         features: ["Mass times, Sacraments, the Word of God, news, schedules, catechism, library, donations, and emergency contact", "Content administration with secure admin authentication", "Next.js App Router and Server Components for fast page delivery", "Responsive editorial interface with SEO, sitemap, and desktop/mobile support"],
+      },
+      fuumanga: {
+        subtitle: "Privacy-first reader aggregating Vietnamese manga translations",
+        description: "A lightweight, distraction-free manga web reader aggregating live Vietnamese translations from MangaDex and OTruyen with zero authentication required, client-side reading persistence, and responsive UX.",
+        role: "Full-stack developer and product owner",
+        stack: ["React", "Vite", "Vanilla CSS", "JavaScript", "LocalStorage API", "Node.js Test Runner"],
+        features: [
+          "Multi-source catalog aggregation from MangaDex and OTruyen with in-memory caching and prefix-isolated routing",
+          "Diacritic-insensitive search supporting decomposed Unicode (`NFD`), tonal accents, and special characters (`đ`/`Đ`)",
+          "Continuous vertical reader powered by `IntersectionObserver` with auto-saving chapter and page reading positions",
+          "100% client-side bookmarks, reading history, and dark/light theme persistence with schema validation",
+        ],
+      },
+      docunchain: {
+        subtitle: "Chrome extension for exporting authorized documents & slides",
+        description: "A Chrome Manifest V3 extension enabling direct export of public or authorized documents to clean PDFs from Studocu, Scribd, and Google Drive, plus image-based PPTX export from SlideShare.",
+        role: "Browser Extension Developer",
+        stack: ["Chrome Manifest V3", "JavaScript", "jsPDF", "PptxGenJS", "HTML5 Canvas", "Service Workers"],
+        features: [
+          "Manifest V3 architecture with isolated content scripts, dynamic injection, and background service workers",
+          "Local in-browser PDF generation via jsPDF with zero document uploads to external servers",
+          "SlideShare presentation extraction and client-side PPTX bundling using PptxGenJS and JSZip",
+          "Targeted session hygiene and cookie clearing for supported academic portals while preserving Cloudflare verification",
+        ],
       },
     },
     skills: [
@@ -134,14 +212,60 @@ export const CONTENT: Record<Language, PortfolioContent> = {
     language: { toggle: "英語に切り替える", label: "EN" },
     identity: { brand: "EPAUENGI.", name: "グエン・ディン・フォン", role: "フルスタックエンジニア志望", location: "ホーチミン市、ベトナム", availability: "Available for hire", school: "UIT / Student", email: "ndphong0602@gmail.com" },
     home: { recentWork: "プロジェクト", introLead: "フロントエンドUIからバックエンドAPI、データベース設計まで、実用的なWebアプリケーションを開発しています。", introText: "私はホーチミン市情報通信大学の学生で、Full Stack Engineerを目指しています。Web開発とデータベースに関心があります。", aboutAction: "自己紹介", moreWork: "プロジェクトを見る", view: "デモを見る" },
-    work: { heading: "実用的なデジタルプロダクトを開発", all: "すべてのプロジェクト", development: "フルスタック開発", demo: "デモを見る", source: "GitHub", features: "主な機能", role: "役割", stack: "技術スタック" },
+    work: {
+      heading: "実用的なデジタルプロダクトを開発",
+      all: "すべてのプロジェクト",
+      development: "フルスタック開発",
+      extensions: "拡張機能",
+      demo: "デモを見る",
+      source: "GitHub",
+      features: "主な機能",
+      role: "役割",
+      stack: "技術スタック",
+    },
     about: { heading: "役立つシステムを学びながら開発", text: "私はホーチミン市情報通信大学の学生で、Full Stack Engineerを目指しています。Web開発とデータベースに関心があり、フロントエンドからバックエンド、データベース設計まで一貫して学習・開発しています。", focus: "興味分野", focusItems: ["Web開発", "データベース", "AI統合"], skillsHeading: "スキル", proficiency: "習熟度" },
     certificateSection: { heading: "資格・認定", badge: "学習実績", label: "認定" },
     contact: { heading: "お気軽にご連絡ください", eyebrow: "What’s next?", text: "現在、新たな機会を探しています。質問がある場合でも、ただ挨拶したい場合でも、お気軽にご連絡ください！", action: "メールを送る", details: "連絡先", location: "ホーチミン市、ベトナム" },
     footer: { heading: "一緒に働きましょう", action: "お問い合わせ", version: "ポートフォリオ", time: "現地時間" },
     projects: {
+      fuucine: {
+        subtitle: "映画検索・ストリーミングプラットフォーム",
+        description: "外部カタログAPI、IMDb評価の非同期解決、独自のWebGLプロジェクターシェーダー、アクセシブルなモーダル遷移を備えた高機能映画検索・視聴Webアプリ。",
+        role: "フロントエンド / クリエイティブ開発",
+        stack: ["React", "TypeScript", "Vite", "Tailwind CSS", "Framer Motion", "WebGL / GLSL", "SWR"],
+        features: [
+          "プロシージャルノイズとレイマーチングを用いた独自のWebGLプロジェクター光線・微粒子シェーダー",
+          "あいまいタイトル検索と遅延ロードを組み合わせたIMDb評価の非同期解決パイプライン",
+          "Framer MotionのlayoutIdを活用したカードとプレーヤー間のシームレスなトランジション",
+          "字幕・吹替の自動グループ化とエピソード追跡に対応したマルチサーバー再生機能",
+        ],
+      },
       yomuji: { subtitle: "日本語学習者向けの日越辞書", description: "ベトナム人学習者が漢字・かな・ローマ字・ベトナム語の意味を一つの検索フローで確認できる、検索中心の日本語辞書アプリです。", role: "フルスタック開発 / プロダクト開発", stack: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Supabase", "PostgreSQL", "IndexedDB"], features: ["漢字・かな・ローマ字・ベトナム語の複数形式検索", "単語と漢字の詳細情報を一画面で表示", "書き順アニメーションとブラウザ音声再生を搭載", "ダークモードとIndexedDBキャッシュに対応したレスポンシブUI"] },
       "giaoxu-hoi-an": { subtitle: "ホイアン教区の公式情報ポータル", description: "ダナン教区に属するホイアン教区の公式情報ポータルです。教区の信者、訪問者、地域の人々をつなぎ、必要な牧会情報を提供します。", role: "フルスタックWeb開発", stack: ["Next.js", "React", "TypeScript", "Tailwind CSS", "MongoDB", "NextAuth", "MDX"], features: ["ミサの時間、秘跡、神の言葉、ニュース、活動予定、カテキズム、図書館、献金、緊急連絡先を掲載", "コンテンツ管理と管理者認証に対応", "App RouterとServer Componentsによる高速なページ表示", "新聞を参考にしたレスポンシブな編集デザイン、SEOとサイトマップに対応"] },
+      fuumanga: {
+        subtitle: "プライバシー重視のWebマンガリーダー",
+        description: "MangaDexとOTruyenからベトナム語翻訳マンガを集約し、ログイン不要・クライアント保存で快適に読める軽量Webマンガリーダー。",
+        role: "フルスタック開発 / プロダクトオーナー",
+        stack: ["React", "Vite", "Vanilla CSS", "JavaScript", "LocalStorage API", "Node.js Test Runner"],
+        features: [
+          "MangaDexおよびOTruyen APIからのマルチソース集約とインメモリキャッシュ",
+          "ベトナム語の声調記号や合成Unicode（NFD）に対応したアクセント非依存の高速検索",
+          "IntersectionObserverによるページ追跡と読書位置の自動保存を備えた縦スクロールリーダー",
+          "完全クライアントサイド（LocalStorage）の閲覧履歴・お気に入り保存とダーク/ライトテーマ",
+        ],
+      },
+      docunchain: {
+        subtitle: "ドキュメント・スライド出力用Chrome拡張機能",
+        description: "Studocu、Scribd、Google DriveからPDFを直接出力し、SlideShareからスライド画像をPPTX形式で生成・保存するChrome Manifest V3拡張機能。",
+        role: "ブラウザ拡張機能開発",
+        stack: ["Chrome Manifest V3", "JavaScript", "jsPDF", "PptxGenJS", "HTML5 Canvas", "Service Workers"],
+        features: [
+          "独立したContent ScriptsとService Workerを備えたChrome Manifest V3アーキテクチャ",
+          "外部サーバーを介さずブラウザ内でjsPDFを用いて完結するセキュアなローカルPDF生成",
+          "PptxGenJSとJSZipを活用したSlideShareスライド画像のクライアントサイドPPTX変換",
+          "学術・ドキュメントサイトに最適化されたセッション管理とCookieクリーン機能",
+        ],
+      },
     },
     skills: [
       { name: "フロントエンド", items: "HTML, CSS, JavaScript, TypeScript, React, Next.js, Tailwind CSS" },
@@ -171,11 +295,13 @@ export const GREETINGS = [
 
 export const HORIZONTAL = [
   [
+    { src: `${PROJECT_ASSET_ROOT}/fuucine-cover.png`, alt: "FuuCine project preview" },
     { src: `${PROJECT_ASSET_ROOT}/yomuji-cover.png`, alt: "YomuJi project preview" },
-    { src: `${PROJECT_ASSET_ROOT}/giaoxu-hoi-an-cover.png`, alt: "Giáo Xứ Hội An project preview" },
+    { src: `${PROJECT_ASSET_ROOT}/docunchain-cover.png`, alt: "DocUnchain project preview" },
   ],
   [
+    { src: `${PROJECT_ASSET_ROOT}/fuumanga-cover.png`, alt: "FuuManga project preview" },
     { src: `${PROJECT_ASSET_ROOT}/giaoxu-hoi-an-cover.png`, alt: "Giáo Xứ Hội An project preview" },
-    { src: `${PROJECT_ASSET_ROOT}/yomuji-cover.png`, alt: "YomuJi project preview" },
+    { src: `${PROJECT_ASSET_ROOT}/fuucine-cover.png`, alt: "FuuCine project preview" },
   ],
 ] as const;

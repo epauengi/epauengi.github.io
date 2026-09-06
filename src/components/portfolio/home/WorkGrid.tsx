@@ -12,7 +12,7 @@ export function WorkGrid() {
         <div className="grid-sub-title"><div className="flex-col"><h5>{content.home.recentWork}</h5></div></div>
         <ul className="work-items mouse-pos-list-image-wrap">
           {WORK.map((project) => (
-            <li className="development visible" key={project.slug}>
+            <li className={`${project.category} visible`} key={project.slug}>
               <div className="stripe animate" />
               <a href={project.demo} target="_blank" rel="noreferrer" className="row">
                 <div className="flex-col"><h4><span>{project.title}</span></h4></div>
