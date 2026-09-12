@@ -6,11 +6,11 @@ import {
   ReactIcon,
   NextjsIcon,
   TypeScriptIcon,
-  NodejsIcon,
-  PythonIcon,
-  SpringIcon,
+  JavaScriptIcon,
+  TailwindIcon,
   PostgresIcon,
-  GeminiAIIcon,
+  SupabaseIcon,
+  GitIcon,
 } from "../shared/TechIcons";
 
 interface SatelliteItem {
@@ -42,13 +42,13 @@ const SATELLITES: SatelliteItem[] = [
     className: "portfolio-systems-orb__icon--react",
   },
   {
-    id: "node",
-    icon: NodejsIcon,
-    labelEn: "Node.js",
-    labelJp: "Node.js",
+    id: "typescript",
+    icon: TypeScriptIcon,
+    labelEn: "TypeScript",
+    labelJp: "TypeScript",
     angleOffset: Math.PI * 0.25, // 45 deg
-    isPrimary: false,
-    className: "portfolio-systems-orb__icon--node",
+    isPrimary: true,
+    className: "portfolio-systems-orb__icon--ts",
   },
   {
     id: "nextjs",
@@ -60,49 +60,49 @@ const SATELLITES: SatelliteItem[] = [
     className: "portfolio-systems-orb__icon--nextjs",
   },
   {
-    id: "python",
-    icon: PythonIcon,
-    labelEn: "Python",
-    labelJp: "Python",
+    id: "javascript",
+    icon: JavaScriptIcon,
+    labelEn: "JavaScript",
+    labelJp: "JavaScript",
     angleOffset: Math.PI * 0.75, // 135 deg
     isPrimary: false,
-    className: "portfolio-systems-orb__icon--python",
+    className: "portfolio-systems-orb__icon--js",
   },
   {
-    id: "typescript",
-    icon: TypeScriptIcon,
-    labelEn: "TypeScript",
-    labelJp: "TypeScript",
+    id: "tailwind",
+    icon: TailwindIcon,
+    labelEn: "Tailwind CSS",
+    labelJp: "Tailwind CSS",
     angleOffset: Math.PI, // 180 deg
-    isPrimary: true,
-    className: "portfolio-systems-orb__icon--ts",
-  },
-  {
-    id: "spring",
-    icon: SpringIcon,
-    labelEn: "Spring Boot",
-    labelJp: "Spring Boot",
-    angleOffset: Math.PI * 1.25, // 225 deg
     isPrimary: false,
-    className: "portfolio-systems-orb__icon--spring",
-  },
-  {
-    id: "gemini",
-    icon: GeminiAIIcon,
-    labelEn: "Gemini AI",
-    labelJp: "Gemini AI",
-    angleOffset: Math.PI * 1.5, // 270 deg
-    isPrimary: true,
-    className: "portfolio-systems-orb__icon--gemini",
+    className: "portfolio-systems-orb__icon--tailwind",
   },
   {
     id: "postgres",
     icon: PostgresIcon,
     labelEn: "PostgreSQL",
     labelJp: "PostgreSQL",
+    angleOffset: Math.PI * 1.25, // 225 deg
+    isPrimary: true,
+    className: "portfolio-systems-orb__icon--postgres",
+  },
+  {
+    id: "supabase",
+    icon: SupabaseIcon,
+    labelEn: "Supabase",
+    labelJp: "Supabase",
+    angleOffset: Math.PI * 1.5, // 270 deg
+    isPrimary: false,
+    className: "portfolio-systems-orb__icon--supabase",
+  },
+  {
+    id: "git",
+    icon: GitIcon,
+    labelEn: "Git",
+    labelJp: "Git",
     angleOffset: Math.PI * 1.75, // 315 deg
     isPrimary: false,
-    className: "portfolio-systems-orb__icon--postgres",
+    className: "portfolio-systems-orb__icon--git",
   },
 ];
 
