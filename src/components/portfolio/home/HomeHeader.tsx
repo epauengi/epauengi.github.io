@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowUpRight, Globe, HangerShape } from "../shared/icons";
+import { Globe, HangerShape } from "../shared/icons";
 import { usePortfolioLanguage } from "../shared/PortfolioLanguage";
 import { NavBar } from "../shared/NavBar";
 import { PortfolioOrb } from "./PortfolioOrb";
@@ -23,7 +23,6 @@ export function HomeHeader() {
       <NavBar />
       <div className="container once-in once-in-secondary">
         <div className="row"><div className="flex-col">
-          <div className="header-above-h4" data-scroll data-scroll-speed="1"><div className="arrow big"><ArrowUpRight /></div></div>
           <h4><span>{content.identity.availability}</span> {content.identity.role}</h4>
         </div></div>
       </div>
