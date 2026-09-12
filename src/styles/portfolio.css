@@ -2917,16 +2917,16 @@ main.touch .main-wrap {
    padding: .1em 0;
 }
 
-.work-grid .work-items a:hover h4 {
+.work-grid .work-items a:is(:hover, :focus-visible) h4 {
    transform: translateX(calc(var(--container-padding) * -.1)) rotate(0.001deg);
 }
 
 .work-grid .work-items a p {
-   transition: var(--animation-fast);  
+   transition: var(--animation-fast);
    transform: translateX(0) rotate(0.001deg);
 }
 
-.work-grid .work-items a:hover p {
+.work-grid .work-items a:is(:hover, :focus-visible) p {
    transform: translateX(calc(var(--container-padding) * .1)) rotate(0.001deg);
 }
 
@@ -2934,12 +2934,24 @@ main.touch .main-wrap {
    transition: var(--animation-fast);
 }
 
-.work-grid .work-items:hover a {
-   opacity: 1;
+@media (hover: hover) {
+   .work-grid .work-items:hover a {
+      opacity: .33;
+   }
+
+   .work-grid .work-items a:hover {
+      opacity: 1;
+   }
 }
 
-.work-grid .work-items a:hover {
+.work-grid .work-items:focus-within a {
    opacity: .33;
+}
+
+.work-grid .work-items a:focus-visible {
+   opacity: 1;
+   outline: 2px solid var(--color-blue);
+   outline-offset: 5px;
 }
 
 /* ------------------------- Work Grid - Large -------------------------------------------------- */
