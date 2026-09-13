@@ -29,7 +29,7 @@ export function Footer() {
       <div className="footer-wrap footer-footer-wrap theme-dark" data-scroll-section>
         <footer className="section footer" data-scroll data-scroll-speed="-4" data-scroll-position="bottom">
           <div className="container medium">
-            <div className="row"><div className="flex-col"><div className="arrow"><ArrowUpRight /></div><h2><span><span className="profile-picture portfolio-monogram" aria-hidden="true">PN</span> {content.footer.heading}</span></h2></div></div>
+            <div className="row"><div className="flex-col"><div className="arrow"><ArrowUpRight /></div><h2><span>{content.footer.heading}</span></h2></div></div>
             <div className="row"><div className="flex-col"><div className="stripe" /><div className="btn-fixed"><div className="btn btn-round" data-scroll data-scroll-speed="-1" data-scroll-direction="horizontal" data-scroll-position="bottom" data-scroll-offset="-50%, 0"><Magnetic as="a" href="/contact/" strength={100} strengthText={50}><div className="btn-fill" /><span className="btn-text"><span className="btn-text-inner">{content.footer.action}</span></span></Magnetic></div></div></div></div>
             <div className="row"><div className="flex-col"><div className="btn btn-normal"><Magnetic as="a" href={`mailto:${content.identity.email}`} strength={25} strengthText={15}><div className="btn-fill" /><span className="btn-text"><span className="btn-text-inner change">{content.identity.email}</span></span></Magnetic></div></div></div>
           </div>
