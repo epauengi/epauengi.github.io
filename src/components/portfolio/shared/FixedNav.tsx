@@ -4,6 +4,7 @@ import { Magnetic } from "./Magnetic";
 import { RippleButton } from "./RippleButton";
 import { usePortfolioLanguage } from "./PortfolioLanguage";
 import { NAV, SOCIALS, type SiteRoute } from "./data";
+import { SocialIcon } from "./icons";
 
 type Props = { currentRoute?: SiteRoute };
 
@@ -41,8 +42,8 @@ export function FixedNav({ currentRoute = "/" }: Props) {
               <ul>
                 {SOCIALS.map((social) => (
                   <li className="btn btn-link btn-link-external" key={social.label}>
-                    <Magnetic as="a" href={social.href} target="_blank" rel="noreferrer" strength={20} strengthText={10}>
-                      <span className="btn-text"><span className="btn-text-inner">{social.label}</span></span>
+                    <Magnetic as="a" href={social.href} target="_blank" rel="noreferrer" strength={20} strengthText={10} aria-label={social.label} title={social.label}>
+                      <span className="btn-text"><span className="btn-text-inner"><SocialIcon name={social.label} className="social-icon" /></span></span>
                     </Magnetic>
                   </li>
                 ))}

@@ -2435,6 +2435,19 @@ main.touch .main-wrap {
    font-size: .85em;
 }
 
+.social-icon {
+   display: inline-block;
+   vertical-align: middle;
+   width: 1.35em;
+   height: 1.35em;
+   fill: currentColor;
+   transition: transform var(--animation-fast);
+}
+
+.btn-link-external:hover .social-icon {
+   transform: scale(1.12);
+}
+
 .bottom-footer p {
    font-size: .85em;
 }

@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { ArrowUpRight } from "./icons";
+import { ArrowUpRight, SocialIcon } from "./icons";
 import { Magnetic } from "./Magnetic";
 import { usePortfolioLanguage } from "./PortfolioLanguage";
 import { SOCIALS } from "./data";
@@ -35,7 +35,7 @@ export function Footer() {
           </div>
           <div className="container no-padding"><div className="row bottom-footer">
             <div className="flex-col"><div className="credits"><h5>{content.footer.version}</h5><p>© {year} Phong Nguyen.</p></div><div className="time"><h5>{content.footer.time}</h5><p><span id="timeSpan">{time}</span></p></div></div>
-            <div className="flex-col"><div className="socials"><h5>{content.nav.socials}</h5><ul>{SOCIALS.map((social) => <li className="btn btn-link btn-link-external" key={social.label}><Magnetic as="a" href={social.href} target="_blank" rel="noreferrer" strength={20} strengthText={10}><span className="btn-text"><span className="btn-text-inner">{social.label}</span></span></Magnetic></li>)}</ul><div className="stripe" /></div></div>
+            <div className="flex-col"><div className="socials"><h5>{content.nav.socials}</h5><ul>{SOCIALS.map((social) => <li className="btn btn-link btn-link-external" key={social.label}><Magnetic as="a" href={social.href} target="_blank" rel="noreferrer" strength={20} strengthText={10} aria-label={social.label} title={social.label}><span className="btn-text"><span className="btn-text-inner"><SocialIcon name={social.label} className="social-icon" /></span></span></Magnetic></li>)}</ul><div className="stripe" /></div></div>
           </div></div>
         </footer>
         <div className="overlay overlay-gradient" />

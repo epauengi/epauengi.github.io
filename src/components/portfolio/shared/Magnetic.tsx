@@ -13,6 +13,8 @@ type Props = {
   children: ReactNode;
   style?: CSSProperties;
   onClick?: () => void;
+  title?: string;
+  "aria-label"?: string;
 };
 
 export function Magnetic({
@@ -26,6 +28,8 @@ export function Magnetic({
   children,
   style,
   onClick,
+  title,
+  "aria-label": ariaLabel,
 }: Props) {
   const cls = `btn-click magnetic ${className}`.trim();
   const attrs = {
@@ -34,6 +38,8 @@ export function Magnetic({
     "data-strength-text": String(strengthText),
     style,
     onClick,
+    title,
+    "aria-label": ariaLabel,
   };
   if (as === "a") {
     return (
