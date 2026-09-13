@@ -2444,8 +2444,10 @@ main.touch .main-wrap {
    transition: transform var(--animation-fast);
 }
 
-.btn-link-external:hover .social-icon {
-   transform: scale(1.12);
+@media (hover: hover) {
+   .btn-link-external:hover .social-icon {
+      transform: scale(1.12);
+   }
 }
 
 .bottom-footer p {
@@ -4470,6 +4472,91 @@ main.touch .main-wrap {
 
 .contact-header .form {
    background: var(--color-dark);
+}
+
+/* --- Portfolio Social Feedback --- */
+
+.btn-link.btn-link-external:has(.social-icon) .btn-text-inner {
+   position: relative;
+   z-index: 0;
+   display: grid;
+   place-items: center;
+   isolation: isolate;
+}
+
+.btn-link.btn-link-external:has(.social-icon) .btn-text-inner::before {
+   position: absolute;
+   inset: -.35em;
+   z-index: -1;
+   content: "";
+   border: 1px solid rgb(255 255 255 / .45);
+   border-radius: 50%;
+   background: rgb(69 92 233 / 0);
+   opacity: 0;
+   pointer-events: none;
+   transform: scale(.72);
+   transition: opacity .3s cubic-bezier(.7, 0, .3, 1), transform .3s cubic-bezier(.7, 0, .3, 1), background-color .12s linear;
+}
+
+.btn-link.btn-link-external:has(.social-icon) .social-icon {
+   position: relative;
+   z-index: 1;
+   transform-origin: center;
+}
+
+@media (hover: hover) {
+   .btn-link.btn-link-external:has(.social-icon) .btn-click:hover .btn-text-inner::before {
+      background: rgb(69 92 233 / .16);
+      opacity: 1;
+      transform: scale(1);
+   }
+
+   .theme-dark .btn-link.btn-link-external:has(.social-icon) .btn-click:hover::after {
+      background: var(--color-blue);
+   }
+}
+
+.btn-link.btn-link-external:has(.social-icon) .btn-click:focus-visible .btn-text-inner::before {
+   background: rgb(69 92 233 / .16);
+   opacity: 1;
+   transform: scale(1);
+}
+
+.theme-dark .btn-link.btn-link-external:has(.social-icon) .btn-click:focus-visible::after {
+   background: var(--color-blue);
+   transform: translate(-50%, -50%) scale(1, 1) rotate(.001deg);
+}
+
+.btn-link.btn-link-external:has(.social-icon) .btn-click:focus-visible .social-icon {
+   transform: scale(1.12) rotate(.001deg);
+}
+
+.btn-link.btn-link-external:has(.social-icon) .btn-click:active .btn-text-inner::before {
+   border-color: var(--color-blue);
+   background: rgb(69 92 233 / .42);
+   opacity: 1;
+   transform: scale(.9);
+}
+
+.btn-link.btn-link-external:has(.social-icon) .btn-click:active .social-icon {
+   transform: scale(.92) rotate(.001deg);
+}
+
+.theme-dark .btn-link.btn-link-external:has(.social-icon) .btn-click:active::after {
+   background: var(--color-blue);
+   transform: translate(-50%, -50%) scale(1, 1) rotate(.001deg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+   .btn-link.btn-link-external:has(.social-icon) .btn-text-inner::before,
+   .btn-link.btn-link-external:has(.social-icon) .social-icon {
+      transition: none;
+   }
+
+   .btn-link.btn-link-external:has(.social-icon) .btn-click:active .btn-text-inner::before,
+   .btn-link.btn-link-external:has(.social-icon) .btn-click:active .social-icon {
+      transform: none;
+   }
 }
 
 @media screen and (max-width: 720px){
