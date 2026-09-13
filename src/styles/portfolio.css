@@ -5050,12 +5050,12 @@ main.touch .case-intro-image .btn-wrap {
 
 .home-header .personal-image .portfolio-systems-orb__orbit--a {
    z-index: 0;
-   border: 1px solid rgb(255 255 255 / .24);
+   border: 1.5px solid rgb(255 255 255 / .42);
 }
 
 .home-header .personal-image .portfolio-systems-orb__orbit--b {
    z-index: 2;
-   border: 1px solid rgb(255 255 255 / .72);
+   border: 1.5px solid rgb(255 255 255 / .9);
    clip-path: inset(50% 0 0 0);
 }
 
