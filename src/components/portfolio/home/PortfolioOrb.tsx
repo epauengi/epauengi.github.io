@@ -148,11 +148,10 @@ export function PortfolioOrb() {
       const posX = relX * size;
       const posY = relY * size;
 
-      // Depth calculations
-      // sinT > 0 is the front half of the orbit; sinT <= 0 is the back half
+      // sinT maps the satellite continuously from the back (-1) to the front (1).
       const isFront = sinT > 0;
-      const depthScale = isFront ? 1.0 + 0.12 * sinT : 1.0 + 0.1 * sinT;
-      const opacity = isFront ? 1.0 : Math.max(0.75, 0.75 + 0.25 * (1 + sinT));
+      const depthScale = 1 + 0.18 * sinT;
+      const opacity = 0.81 + 0.19 * sinT;
       const zIndex = isFront ? 3 : 0;
 
       el.style.transform = `translate(-50%, -50%) translate3d(${posX.toFixed(2)}px, ${posY.toFixed(2)}px, 0) scale(${depthScale.toFixed(3)})`;
