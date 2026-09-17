@@ -2688,7 +2688,26 @@ main.touch .main-wrap {
 }
 
 .home-header .row .flex-col h4 span {
-   display: block;
+   display: flex;
+   align-items: center;
+   gap: .65em;
+   width: fit-content;
+   max-width: 100%;
+   margin-bottom: 1em;
+   padding: .55em .9em;
+   border-radius: 2em;
+   background: var(--color-dark);
+   color: var(--color-white);
+   font-size: .55em;
+   line-height: 1.4;
+}
+
+.home-header .row .flex-col h4 span::before {
+   content: "";
+   flex: 0 0 .5em;
+   height: .5em;
+   border-radius: 50%;
+   background: var(--alert-success);
 }
 
 .home-header .get-height {
