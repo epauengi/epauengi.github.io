@@ -99,7 +99,7 @@ type PortfolioContent = {
   projects: Record<ProjectSlug, ProjectContent>;
   skills: { name: string; items: string }[];
   proficiency: { name: string; items: string }[];
-  certificates: { title: string; issuer: string; date: string; description: string }[];
+  certificates: { title: string; issuer: string; date: string; description: string; tags: string[] }[];
 };
 
 export const CONTENT: Record<Language, PortfolioContent> = {
@@ -202,7 +202,8 @@ export const CONTENT: Record<Language, PortfolioContent> = {
       { name: "Learning", items: "Spring Boot, Docker, AWS" },
     ],
     certificates: [
-      { title: "Gemini Certified Student", issuer: "Google AI", date: "Official Certification", description: "Certification in Google Gemini AI technology application & prompt engineering." },
+      { title: "Gemini Certified Student", issuer: "Google AI", date: "Official Certification", description: "Certification in Google Gemini AI technology application & prompt engineering.", tags: ["Prompt Engineering", "Google Gemini", "AI Integration"] },
+      { title: "JAPRISE A2", issuer: "JAPRISE", date: "July 28, 2026", description: "Overall CEFR A2 in the JAPRISE Japanese communication assessment, covering everyday topics and simple workplace exchanges.", tags: ["Japanese", "CEFR A2", "Workplace Communication"] },
     ],
   },
   jp: {
@@ -275,7 +276,8 @@ export const CONTENT: Record<Language, PortfolioContent> = {
     ],
     proficiency: [{ name: "得意", items: "HTML, CSS, JavaScript, SQL, React" }, { name: "学習中", items: "Spring Boot, Docker, AWS" }],
     certificates: [
-      { title: "Gemini Certified Student", issuer: "Google AI", date: "公式認定", description: "Google Gemini AI技術の活用およびプロンプトエンジニアリングに関する認定。" },
+      { title: "Gemini Certified Student", issuer: "Google AI", date: "公式認定", description: "Google Gemini AI技術の活用およびプロンプトエンジニアリングに関する認定。", tags: ["Prompt Engineering", "Google Gemini", "AI Integration"] },
+      { title: "JAPRISE A2", issuer: "JAPRISE", date: "2026年7月28日", description: "JAPRISE日本語コミュニケーション能力評価で、総合評価CEFR A2を取得。日常の話題や職場での簡単な情報交換に関する評価。", tags: ["日本語", "CEFR A2", "職場コミュニケーション"] },
     ],
   },
 };

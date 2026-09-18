@@ -49,9 +49,7 @@ export function Certificates() {
                 </div>
                 <p className="portfolio-certificate-desc">{certificate.description}</p>
                 <div className="portfolio-certificate-tags">
-                  <span>Prompt Engineering</span>
-                  <span>Google Gemini</span>
-                  <span>AI Integration</span>
+                  {certificate.tags.map((tag) => <span key={tag}>{tag}</span>)}
                 </div>
               </article>
             ))}
