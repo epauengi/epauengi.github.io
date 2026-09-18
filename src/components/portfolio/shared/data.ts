@@ -93,7 +93,7 @@ type PortfolioContent = {
   home: { recentWork: string; introLead: string; introText: string; aboutAction: string; moreWork: string; view: string };
   work: { heading: string; all: string; development: string; extensions: string; demo: string; source: string; features: string; role: string; stack: string };
   about: { heading: string; text: string; focus: string; focusItems: string[]; skillsHeading: string; proficiency: string };
-  certificateSection: { heading: string; label: string };
+  certificateSection: { heading: string };
   contact: { heading: string; eyebrow: string; text: string; action: string; details: string; location: string };
   footer: { heading: string; action: string; version: string; time: string };
   projects: Record<ProjectSlug, ProjectContent>;
@@ -135,7 +135,7 @@ export const CONTENT: Record<Language, PortfolioContent> = {
       skillsHeading: "Skills and practice",
       proficiency: "Proficiency",
     },
-    certificateSection: { heading: "Certificates", label: "Certification" },
+    certificateSection: { heading: "Certificates" },
     contact: { heading: "Let’s start a conversation", eyebrow: "What’s next?", text: "I’m currently looking for new opportunities. Whether you have a question or just want to say hi, I’ll try my best to get back to you!", action: "Say hello", details: "Contact details", location: "Ho Chi Minh City, VN" },
     footer: { heading: "Let’s work together", action: "Get in touch", version: "Portfolio", time: "Local time" },
     projects: {
@@ -224,7 +224,7 @@ export const CONTENT: Record<Language, PortfolioContent> = {
       stack: "技術スタック",
     },
     about: { heading: "役立つシステムを学びながら開発", text: "私はホーチミン市情報通信大学の学生で、Full Stack Engineerを目指しています。Web開発とデータベースに関心があり、フロントエンドからバックエンド、データベース設計まで一貫して学習・開発しています。", focus: "興味分野", focusItems: ["Web開発", "データベース", "AI統合"], skillsHeading: "スキル", proficiency: "習熟度" },
-    certificateSection: { heading: "資格・認定", label: "認定" },
+    certificateSection: { heading: "資格・認定" },
     contact: { heading: "お気軽にご連絡ください", eyebrow: "What’s next?", text: "現在、新たな機会を探しています。質問がある場合でも、ただ挨拶したい場合でも、お気軽にご連絡ください！", action: "メールを送る", details: "連絡先", location: "ホーチミン市、ベトナム" },
     footer: { heading: "一緒に働きましょう", action: "お問い合わせ", version: "ポートフォリオ", time: "現地時間" },
     projects: {

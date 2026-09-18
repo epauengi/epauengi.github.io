@@ -6,15 +6,18 @@ export function Certificates() {
   const { content } = usePortfolioLanguage();
   return (
     <section id="certificates" className="section about-certificates portfolio-certificates" data-scroll-section>
-      <div className="container medium">
+      <div className="container">
         <div className="row">
           <div className="flex-col">
-            <div className="certificate-badge">
-              <span>{content.certificateSection.label}</span>
-            </div>
             <h2>{content.certificateSection.heading}</h2>
-            {content.certificates.map((certificate) => (
-              <article className="portfolio-certificate" key={certificate.title}>
+          </div>
+        </div>
+        <div className="row">
+          {content.certificates.map((certificate, index) => (
+            <div className="flex-col" key={certificate.title}>
+              <h5>0{index + 1}</h5>
+              <div className="stripe" />
+              <article className="portfolio-certificate">
                 <h4>{certificate.title}</h4>
                 <div className="portfolio-certificate-meta">
                   <span className="issuer">{certificate.issuer}</span>
@@ -23,11 +26,13 @@ export function Certificates() {
                 </div>
                 <p className="portfolio-certificate-desc">{certificate.description}</p>
                 <div className="portfolio-certificate-tags">
-                  {certificate.tags.map((tag) => <span key={tag}>{tag}</span>)}
+                  {certificate.tags.map((tag) => (
+                    <span key={tag}>{tag}</span>
+                  ))}
                 </div>
               </article>
-            ))}
-          </div>
+            </div>
+          ))}
         </div>
       </div>
     </section>
