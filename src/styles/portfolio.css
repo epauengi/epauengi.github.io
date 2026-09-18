@@ -3922,9 +3922,9 @@ main.touch .main-wrap {
 }
 
 .about-image .flex-col:nth-child(1) {
-   width: 35%;
+   width: 56%;
    padding-left: var(--container-padding);
-   padding-right: calc(var(--container-padding) / 2);
+   padding-right: calc(var(--container-padding) * 1.25);
 }
 
 .about-image .flex-col:nth-child(1) p {
@@ -3945,7 +3945,10 @@ main.touch .main-wrap {
 }
 
 .about-image .flex-col:nth-child(2) {
-   width: 65%;
+   width: 44%;
+   display: flex;
+   align-items: center;
+   justify-content: flex-end;
 }
 
 .single-about-image {
@@ -3975,21 +3978,6 @@ main.touch .main-wrap {
 }
 
 @media screen and (max-width: 840px) {
-   .about-image .flex-col:nth-child(1) {
-      width: 45%;
-      padding-right: calc(var(--container-padding) / 1);
-   }
-   
-   .about-image .flex-col:nth-child(2) {
-      width: 55%;
-   }
-
-   .single-about-image::before{
-      padding-top: 125%;
-   }
-}
-
-@media screen and (max-width: 840px) {
 
    .about-image {
       padding-top: calc(var(--section-padding) * .85);
@@ -4007,10 +3995,11 @@ main.touch .main-wrap {
    .about-image .flex-col:nth-child(1) p {
       max-width: 100%;
    }
-   
+
    .about-image .flex-col:nth-child(2) {
-      padding-top: calc(var(--section-padding) / 1.15);
+      padding-top: calc(var(--section-padding) * 0.35);
       width: 100%;
+      justify-content: flex-start;
    }
 
    .about-image .flex-col:nth-child(1) .arrow {
@@ -5371,6 +5360,15 @@ main.touch .case-intro-image .btn-wrap {
    }
 }
 
+.single-about-image.portfolio-about-badge {
+   max-width: 440px;
+   margin-left: auto;
+}
+
+.single-about-image.portfolio-about-badge::before {
+   padding-top: 60%;
+}
+
 .single-about-image.portfolio-about-badge .overlay:nth-child(1) {
    inset: 0;
    width: 100%;
@@ -5384,18 +5382,45 @@ main.touch .case-intro-image .btn-wrap {
 
 .portfolio-about-badge .overlay-image span {
    display: block;
-   font-size: clamp(4rem, 10vw, 10rem);
+   font-size: clamp(2.75rem, 5vw, 4.5rem);
    font-weight: 700;
-   letter-spacing: -.08em;
-   line-height: .8;
+   letter-spacing: -.05em;
+   line-height: .85;
 }
 
 .portfolio-about-badge .overlay-image small {
    display: block;
-   margin-top: 1.5em;
-   font-size: 1rem;
+   margin-top: 1rem;
+   font-size: 0.85rem;
    text-transform: uppercase;
-   letter-spacing: .08em;
+   letter-spacing: .1em;
+   opacity: .8;
+}
+
+@media screen and (max-width: 840px) {
+   .single-about-image.portfolio-about-badge {
+      max-width: 100%;
+      margin-left: 0;
+   }
+
+   .single-about-image.portfolio-about-badge::before {
+      padding-top: 48%;
+   }
+}
+
+@media screen and (max-width: 540px) {
+   .single-about-image.portfolio-about-badge::before {
+      padding-top: 45%;
+   }
+
+   .portfolio-about-badge .overlay-image span {
+      font-size: 3rem;
+   }
+
+   .portfolio-about-badge .overlay-image small {
+      font-size: 0.75rem;
+      margin-top: 0.75rem;
+   }
 }
 
 .portfolio-focus-label,
