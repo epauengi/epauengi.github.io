@@ -4182,7 +4182,7 @@ main.touch .main-wrap {
 }
 
 
-/* ------------------------- About - Split certificates -------------------------------------------------- */
+/* ------------------------- About - Certificates -------------------------------------------------- */
 
 
 .about-certificates {
@@ -4190,128 +4190,14 @@ main.touch .main-wrap {
    padding-bottom: calc(var(--section-padding) * 0.75);
 }
 
-.about-certificates .row {
-   align-items: center;
-}
-
-.about-certificates .flex-col:nth-child(1) {
-   width: 48%;
-   padding-right: calc(var(--container-padding) * 0.5);
-}
-
-.about-certificates .flex-col:nth-child(2) {
-   width: 52%;
-   padding-left: calc(var(--container-padding) * 0.5);
-}
-
-.portfolio-certificate-seal-card {
+.about-certificates .flex-col {
    width: 100%;
-   min-height: 290px;
-   background: var(--color-dark);
-   color: var(--color-white);
-   border-radius: 1.5em;
-   padding: 2em;
-   display: flex;
-   flex-direction: column;
-   justify-content: space-between;
-   position: relative;
-   overflow: hidden;
-   box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.1);
-   border: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-.portfolio-certificate-seal-card .certificate-card-top {
-   display: flex;
-   align-items: center;
-   justify-content: space-between;
-}
-
-.portfolio-certificate-seal-card .certificate-seal-badge {
-   display: inline-block;
-   font-size: 0.75em;
-   text-transform: uppercase;
-   letter-spacing: 0.08em;
-   padding: 0.4em 1em;
-   border-radius: 9999px;
-   background: rgba(255, 255, 255, 0.1);
-   color: var(--color-white);
-   font-weight: 500;
-}
-
-.portfolio-certificate-seal-card .certificate-seal-sparkle {
-   color: #5ea2ff;
-   display: flex;
-   align-items: center;
-}
-
-.portfolio-certificate-seal-card .certificate-card-body {
-   margin: 1.75em 0 1.25em;
-}
-
-.portfolio-certificate-seal-card .certificate-card-issuer {
-   display: block;
-   font-size: 0.8em;
-   letter-spacing: 0.12em;
-   text-transform: uppercase;
-   color: rgba(255, 255, 255, 0.55);
-   font-weight: 500;
-   margin-bottom: 0.35em;
-}
-
-.portfolio-certificate-seal-card .certificate-card-title {
-   font-size: clamp(1.35em, 1.8vw, 1.75em);
-   font-weight: 500;
-   color: var(--color-white);
-   line-height: 1.25;
-   margin-bottom: 0.35em;
-}
-
-.portfolio-certificate-seal-card .certificate-card-focus {
-   font-size: 0.85em;
-   color: rgba(255, 255, 255, 0.7);
-   margin: 0;
-}
-
-.portfolio-certificate-seal-card .certificate-card-bottom {
-   display: flex;
-   align-items: center;
-   padding-top: 1.25em;
-   border-top: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.portfolio-certificate-seal-card .certificate-verified-badge {
-   display: inline-flex;
-   align-items: center;
-   gap: 0.5em;
-   font-size: 0.8em;
-   color: rgba(255, 255, 255, 0.8);
-}
-
-.portfolio-certificate-seal-card .verified-dot {
-   width: 8px;
-   height: 8px;
-   border-radius: 50%;
-   background: #10b981;
-   box-shadow: 0 0 10px rgba(16, 185, 129, 0.6);
 }
 
 @media screen and (max-width: 720px) {
 
    .about-certificates {
       padding-top: calc(var(--section-padding) / 1.5);
-   }
-   .about-certificates .flex-col:nth-child(1) {
-      width: 100%;
-      padding-right: 0;
-      order: 2;
-      margin-top: 2em;
-   }
-
-   .about-certificates .flex-col:nth-child(2) {
-      width: 100%;
-      padding-left: 0;
-      padding-bottom: 0;
-      order: 1;
    }
 }
 
