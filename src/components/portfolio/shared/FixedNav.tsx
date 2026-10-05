@@ -14,7 +14,14 @@ export function FixedNav({ currentRoute = "/" }: Props) {
   return (
     <>
       <div className="overlay fixed-nav-back" />
-      <div className="fixed-nav theme-dark">
+      <div
+        id="fixed-nav"
+        className="fixed-nav theme-dark"
+        role="dialog"
+        aria-modal="true"
+        aria-label={content.nav.navigation}
+        aria-hidden="true"
+      >
         <div className="fixed-nav-rounded-div"><div className="rounded-div-wrap"><div className="rounded-div" /></div></div>
         <div className="fixed-nav-inner">
           <div className="row nav-row">

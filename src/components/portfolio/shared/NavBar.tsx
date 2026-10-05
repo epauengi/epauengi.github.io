@@ -39,7 +39,14 @@ export function NavBar({ currentRoute = "/" }: Props) {
           </RippleButton>
         </li>
         <li className="btn btn-link btn-menu">
-          <Magnetic strength={20} strengthText={10}>
+          <Magnetic
+            as="button"
+            strength={20}
+            strengthText={10}
+            aria-label={content.nav.menu}
+            aria-expanded={false}
+            aria-controls="fixed-nav"
+          >
             <div className="btn-text"><span className="btn-text-inner">{content.nav.menu}</span></div>
           </Magnetic>
         </li>

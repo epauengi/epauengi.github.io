@@ -52,61 +52,67 @@ export function SiteEngine({ pageId = "home" }: Props) {
     window.addEventListener("resize", onResize);
     cleanups.push(() => window.removeEventListener("resize", onResize));
 
+    cleanups.push(initHamburger(main, getScroll));
+
     void boot();
 
     async function boot() {
-      const mod = await import("locomotive-scroll");
-      if (cancelled) return;
+      try {
+        const mod = await import("locomotive-scroll");
+        if (cancelled) return;
 
-      const LocomotiveScroll = (mod as { default?: unknown }).default ?? mod;
-      const Ctor = LocomotiveScroll as unknown as {
-        new (options: { el: HTMLElement; smooth: boolean }): Loco;
-      };
+        const LocomotiveScroll = (mod as { default?: unknown }).default ?? mod;
+        const Ctor = LocomotiveScroll as unknown as {
+          new (options: { el: HTMLElement; smooth: boolean }): Loco;
+        };
 
-      document.querySelectorAll(".c-scrollbar").forEach((element) => element.remove());
-      scroll = new Ctor({ el: container, smooth: true });
-      if (cancelled) {
-        scroll.destroy();
+        document.querySelectorAll(".c-scrollbar").forEach((element) => element.remove());
+        scroll = new Ctor({ el: container, smooth: true });
+        if (cancelled) {
+          scroll.destroy();
+          scroll = null;
+          return;
+        }
+
+        const unlisten = scroll.on("scroll", () => ScrollTrigger.update());
+        cleanups.push(() => {
+          if (typeof unlisten === "function") unlisten();
+        });
+
+        ScrollTrigger.scrollerProxy(container, {
+          scrollTop(value) {
+            if (!scroll) return 0;
+            if (arguments.length) {
+              scroll.scrollTo(value as number, { duration: 0, disableLerp: true });
+              return value as number;
+            }
+            return scroll.scroll?.instance?.scroll?.y ?? 0;
+          },
+          getBoundingClientRect() {
+            return {
+              top: 0,
+              left: 0,
+              width: window.innerWidth,
+              height: window.innerHeight,
+            };
+          },
+          pinType: container.style.transform ? "transform" : "fixed",
+        });
+
+        const onRefresh = () => {
+          try {
+            scroll?.update();
+          } catch {
+            /* Locomotive may be tearing down during a refresh. */
+          }
+        };
+        ScrollTrigger.addEventListener("refresh", onRefresh);
+        cleanups.push(() => ScrollTrigger.removeEventListener("refresh", onRefresh));
+      } catch (err) {
+        console.warn("Locomotive Scroll failed to initialize; falling back to native scroll.", err);
         scroll = null;
-        return;
       }
 
-      const unlisten = scroll.on("scroll", () => ScrollTrigger.update());
-      cleanups.push(() => {
-        if (typeof unlisten === "function") unlisten();
-      });
-
-      ScrollTrigger.scrollerProxy(container, {
-        scrollTop(value) {
-          if (!scroll) return 0;
-          if (arguments.length) {
-            scroll.scrollTo(value as number, { duration: 0, disableLerp: true });
-            return value as number;
-          }
-          return scroll.scroll?.instance?.scroll?.y ?? 0;
-        },
-        getBoundingClientRect() {
-          return {
-            top: 0,
-            left: 0,
-            width: window.innerWidth,
-            height: window.innerHeight,
-          };
-        },
-        pinType: container.style.transform ? "transform" : "fixed",
-      });
-
-      const onRefresh = () => {
-        try {
-          scroll?.update();
-        } catch {
-          /* Locomotive may be tearing down during a refresh. */
-        }
-      };
-      ScrollTrigger.addEventListener("refresh", onRefresh);
-      cleanups.push(() => ScrollTrigger.removeEventListener("refresh", onRefresh));
-
-      cleanups.push(initHamburger(main, getScroll));
       cleanups.push(initMagnetic(main));
       cleanups.push(initScrolltriggerNav(main, container));
       cleanups.push(initTricksWords(main));
@@ -152,19 +158,22 @@ export function SiteEngine({ pageId = "home" }: Props) {
       }
 
       ScrollTrigger.refresh();
-      scroll.update();
+      scroll?.update();
 
       const loader = pageId === "home" ? initLoaderHome(main, getScroll) : initLoader(main);
       cleanups.push(() => loader.kill());
-      scroll.update();
+      scroll?.update();
     }
 
     return () => {
       cancelled = true;
       main.classList.remove("nav-active", "scrolled");
-      main.querySelectorAll(".btn-hamburger, .btn-menu").forEach((element) => {
+      main.querySelectorAll(".btn-hamburger, .btn-menu, .btn-hamburger .btn-click, .btn-menu .btn-click").forEach((element) => {
         element.classList.remove("active");
+        element.setAttribute("aria-expanded", "false");
       });
+      container.removeAttribute("inert");
+      main.querySelector("#fixed-nav, .fixed-nav")?.setAttribute("aria-hidden", "true");
       document.documentElement.style.cursor = "auto";
       cleanups.splice(0).reverse().forEach((cleanup) => cleanup());
       scroll?.start();
@@ -183,6 +192,8 @@ function getLoader(main: HTMLElement) {
 }
 
 function initLoaderHome(main: HTMLElement, getScroll: () => Loco | null) {
+  const prefersReducedMotion =
+    typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const wide = window.innerWidth > 540;
   const loader = getLoader(main);
   const screen = loader?.querySelector<HTMLElement>(".loading-screen");
@@ -193,6 +204,15 @@ function initLoaderHome(main: HTMLElement, getScroll: () => Loco | null) {
   const timeline = gsap.timeline();
   const onceIn = main.querySelectorAll(".once-in");
   const greetings = words.querySelectorAll(".home-active");
+
+  if (prefersReducedMotion) {
+    timeline.set(screen, { top: "-100%" });
+    timeline.set(bottom, { height: "0vh" });
+    timeline.set(words, { opacity: 0 });
+    timeline.set(onceIn, { y: "0vh", opacity: 1 });
+    timeline.set("html", { cursor: "auto" });
+    return timeline;
+  }
 
   timeline.set(screen, { top: "0" });
   timeline.set(onceIn, { y: wide ? "50vh" : "10vh" });
@@ -265,6 +285,8 @@ function initLoaderHome(main: HTMLElement, getScroll: () => Loco | null) {
 }
 
 function initLoader(main: HTMLElement) {
+  const prefersReducedMotion =
+    typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const wide = window.innerWidth > 540;
   const loader = getLoader(main);
   const screen = loader?.querySelector<HTMLElement>(".loading-screen");
@@ -273,6 +295,15 @@ function initLoader(main: HTMLElement) {
   if (!screen || !words || !bottom) return gsap.timeline();
 
   const timeline = gsap.timeline();
+  if (prefersReducedMotion) {
+    timeline.set(screen, { top: "-100%" });
+    timeline.set(bottom, { height: "0vh" });
+    timeline.set(words, { opacity: 0 });
+    timeline.set(main.querySelectorAll(".once-in"), { y: "0vh", opacity: 1 });
+    timeline.set("html", { cursor: "auto" });
+    return timeline;
+  }
+
   timeline.set(screen, { top: "0" });
   timeline.set(main.querySelectorAll(".once-in"), { y: wide ? "50vh" : "10vh" });
   timeline.set(words, { opacity: 1, y: -50 });
@@ -304,31 +335,84 @@ function initLoader(main: HTMLElement) {
 }
 
 function initHamburger(main: HTMLElement, getScroll: () => Loco | null): Cleanup {
-  const toggles = main.querySelectorAll<HTMLElement>(".btn-hamburger, .btn-menu");
+  const toggles = main.querySelectorAll<HTMLElement>(
+    ".btn-hamburger, .btn-menu, .btn-hamburger .btn-click, .btn-menu .btn-click",
+  );
   const backdrop = main.querySelector<HTMLElement>(".fixed-nav-back");
+  const container = main.querySelector<HTMLElement>("[data-scroll-container]");
+  const fixedNav = main.querySelector<HTMLElement>("#fixed-nav, .fixed-nav");
+  let lastActiveElement: HTMLElement | null = null;
+
+  const updateAria = (isOpen: boolean) => {
+    toggles.forEach((element) => {
+      element.setAttribute("aria-expanded", String(isOpen));
+      if (element.tagName === "BUTTON") {
+        element.setAttribute("aria-controls", "fixed-nav");
+      }
+    });
+    if (fixedNav) {
+      fixedNav.setAttribute("aria-hidden", String(!isOpen));
+    }
+    if (container) {
+      if (isOpen) {
+        container.setAttribute("inert", "");
+      } else {
+        container.removeAttribute("inert");
+      }
+    }
+  };
+
+  updateAria(false);
+
   const close = () => {
     toggles.forEach((element) => element.classList.remove("active"));
     main.classList.remove("nav-active");
+    updateAria(false);
     getScroll()?.start();
+    if (lastActiveElement && typeof lastActiveElement.focus === "function") {
+      lastActiveElement.focus();
+    }
   };
-  const open = () => {
+
+  const open = (trigger?: HTMLElement) => {
+    lastActiveElement = (trigger ?? (document.activeElement as HTMLElement)) || null;
     toggles.forEach((element) => element.classList.add("active"));
     main.classList.add("nav-active");
+    updateAria(true);
     getScroll()?.stop();
+    const firstFocusable = fixedNav?.querySelector<HTMLElement>(
+      "a, button, input, [tabindex]:not([tabindex='-1'])",
+    );
+    if (firstFocusable) {
+      window.setTimeout(() => firstFocusable.focus(), 80);
+    }
   };
-  const toggle = () => (main.classList.contains("nav-active") ? close() : open());
+
+  const toggle = (event?: Event) => {
+    const trigger = event?.currentTarget instanceof HTMLElement ? event.currentTarget : undefined;
+    if (main.classList.contains("nav-active")) {
+      close();
+    } else {
+      open(trigger);
+    }
+  };
+
   const onKeyDown = (event: KeyboardEvent) => {
-    if (event.key === "Escape") close();
+    if (event.key === "Escape" && main.classList.contains("nav-active")) {
+      close();
+    }
   };
 
   toggles.forEach((element) => element.addEventListener("click", toggle));
-  backdrop?.addEventListener("click", close);
+  backdrop?.addEventListener("click", () => close());
   document.addEventListener("keydown", onKeyDown);
 
   return () => {
     toggles.forEach((element) => element.removeEventListener("click", toggle));
-    backdrop?.removeEventListener("click", close);
+    backdrop?.removeEventListener("click", () => close());
     document.removeEventListener("keydown", onKeyDown);
+    if (container) container.removeAttribute("inert");
+    if (fixedNav) fixedNav.setAttribute("aria-hidden", "true");
   };
 }
 
@@ -409,6 +493,10 @@ function initMagnetic(scope: HTMLElement): Cleanup {
 }
 
 function initStickyCursor(scope: HTMLElement): Cleanup {
+  const prefersReducedMotion =
+    typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (prefersReducedMotion) return () => {};
+
   const image = scope.querySelector<HTMLElement>(".mouse-pos-list-image");
   const button = scope.querySelector<HTMLElement>(".mouse-pos-list-btn");
   const label = scope.querySelector<HTMLElement>(".mouse-pos-list-span");
@@ -760,6 +848,10 @@ function initAboutAnimations(scope: HTMLElement, scroller: HTMLElement): Cleanup
 }
 
 function initScrollLetters(scope: HTMLElement, scroller: HTMLElement): Cleanup {
+  const prefersReducedMotion =
+    typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (prefersReducedMotion) return () => {};
+
   const parent = scope.querySelector<HTMLElement>(".big-name .name-h1");
   if (!parent) return () => {};
   parent.querySelectorAll(".name-wrap[data-roll-clone]").forEach((element) => element.remove());

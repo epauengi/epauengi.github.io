@@ -8,7 +8,14 @@ export function Hamburger() {
 
   return (
     <div className="btn btn-hamburger">
-      <Magnetic strength={50} strengthText={25}>
+      <Magnetic
+        as="button"
+        strength={50}
+        strengthText={25}
+        aria-label={content.nav.menu}
+        aria-expanded={false}
+        aria-controls="fixed-nav"
+      >
         <div className="btn-fill" />
         <div className="btn-text">
           <div className="btn-bars" />

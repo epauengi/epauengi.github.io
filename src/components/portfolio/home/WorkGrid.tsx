@@ -20,8 +20,8 @@ export function WorkGrid() {
               </a>
             </li>
           ))}
-          <div className="stripe last animate" />
         </ul>
+        <div className="stripe last animate" />
       </div>
     </section>
   );
